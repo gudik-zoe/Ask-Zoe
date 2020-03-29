@@ -10,10 +10,14 @@
     <div class="pensiero">
       How can i help u ?
       <br />
-      <from id="myForm" onsubmit="answer()">
+      <form onsubmit="answer() ; return false">
+        <!-- <button onclick="answer()">go</button> -->
         <input type="text" />
+        <br />
         <label></label>
-      </from>
+        <p></p>
+      </form>
+      <button type="button" onclick="style()">change</button>
     </div>
 
     <div class="punto-due"></div>
