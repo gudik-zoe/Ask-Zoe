@@ -1,20 +1,27 @@
 let q;
 let a;
 let timing;
-// let currentTime = setInterval(() => {
-//   let datee = new Date();
-//   datee.getHours() + ":" + datee.getMinutes() + ":" + datee.getSeconds();
-// }, 1000);
 
-let date = new Date();
-let day = date.getDay();
-let time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+let time;
+setInterval(() => {
+  let ora = new Date();
+  time =
+    ("0" + ora.getHours()).slice(-2) +
+    ":" +
+    ("0" + ora.getMinutes()).slice(-2) +
+    ":" +
+    ("0" + ora.getSeconds()).slice(-2);
+}, 1000);
+
+// let date = new Date();
 
 function answer() {
+  let year = new Date().getFullYear();
+  let day = new Date().getDay();
+  let month = new Date().getMonth();
+  let date = new Date().getDate();
   q = document.querySelector("input").value;
-
   let rightEye = document.getElementById("rightEye");
-
   let white = document.getElementById("white");
   let white2 = document.getElementById("white2");
   let leftEye = document.getElementById("leftEye");
@@ -26,11 +33,10 @@ function answer() {
   leftEye.className = "left-eye-closed";
   white.className = "";
 
-  // console.log(q.length);
   if (q.length < 15) {
-    timing = 100;
+    timing = 500;
   } else if (q.length > 15 && q.length < 20) {
-    timing = 1000;
+    timing = 2000;
   } else if (q.length > 15) {
     timing = 3000;
   }
@@ -44,6 +50,9 @@ function answer() {
   }, timing);
 
   switch (day) {
+    case (day = 0):
+      day = "Sunday";
+      break;
     case (day = 1):
       day = "Monday";
       break;
@@ -51,7 +60,7 @@ function answer() {
       day = "Tuesday";
       break;
     case (day = 3):
-      day = "wednesday";
+      day = "Wednesday";
       break;
     case (day = 4):
       day = "Thursday";
@@ -62,8 +71,46 @@ function answer() {
     case (day = 6):
       day = "Saturday";
       break;
-    case (day = 7):
-      day = "Sunday";
+  }
+
+  switch (month) {
+    case (month = 0):
+      month = "01";
+      break;
+    case (month = 1):
+      month = "02";
+      break;
+    case (month = 2):
+      month = "03";
+      break;
+    case (month = 3):
+      month = "04";
+      break;
+    case (month = 4):
+      month = "05";
+      break;
+    case (month = 5):
+      month = "06";
+      break;
+    case (month = 6):
+      month = "07";
+      break;
+    case (month = 7):
+      month = "08";
+      break;
+    case (month = 8):
+      month = "09";
+      break;
+    case (month = 9):
+      month = "10";
+      break;
+    case (month = 10):
+      month = "11";
+      break;
+    case (month = 11):
+      month = "12";
+      break;
+    default:
       break;
   }
 
@@ -78,15 +125,16 @@ function answer() {
       a =
         day +
         " " +
-        date.getDate() +
+        ("0" + date).slice(-2) +
         "/" +
-        date.getMonth() +
+        ("0" + month).slice(-2) +
         "/" +
-        date.getFullYear();
+        year;
       break;
     case "what time is it":
-      a = time;
+      a = "it's" + " " + time;
       break;
+
     default:
       a = "don't know about that yet :( will ask my maker to teach me ";
       break;
