@@ -1,0 +1,22 @@
+{
+  "name": "new-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gudik-zoe/new-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gudik-zoe/new-project/issues"
+  },
+  "homepage": "https://github.com/gudik-zoe/new-project#readme",
+  "dependencies": {
+    "electron": "^8.2.0"
+  }
+}
