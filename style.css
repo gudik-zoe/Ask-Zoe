@@ -9,6 +9,23 @@
   display: none;
 }
 
+/*  */
+/* .label {
+  animation: type;
+  animation-duration: 3s steps(14);
+  overflow: hidden;
+  white-space: nowrap;
+  width: 14ch;
+}
+@keyframes type {
+  0% {
+    width: 0ch;
+  }
+  100% {
+    width: 14ch;
+  }
+} */
+
 .left-eye {
   border-radius: 40px;
   background-color: black;
@@ -98,11 +115,11 @@
 
 .pensiero {
   background-color: turquoise;
-  width: 250px;
-  height: 100px;
+  max-width: 250px;
+  max-height: 110px;
   border-radius: 5px;
   font-size: larger;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 input {
   border-radius: 4px;

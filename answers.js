@@ -2,6 +2,13 @@ let q;
 let a;
 let timing;
 
+let movie;
+
+let jad = new Audio(
+  "Nancy Ajram - Ma Tegi Hena - Official Video Clip  نانسي عجرم - فيديو كليب ما تيجي هنا-[AudioTrimmer.com].mp3"
+);
+let corona = new Audio("VID-20200318-WA0062(mp3)-[AudioTrimmer.com] (1).mp3");
+
 let time;
 setInterval(() => {
   let ora = new Date();
@@ -12,10 +19,63 @@ setInterval(() => {
     ":" +
     ("0" + ora.getSeconds()).slice(-2);
 }, 1000);
+//random movie
+let request = new XMLHttpRequest();
+request.open("GET", "https://ghibliapi.herokuapp.com/films", true);
+request.onload = function() {
+  let data = JSON.parse(this.response);
+  let index = Math.floor(Math.random() * 10);
+  if (request.status >= 200 && request.status < 400) {
+    data[index];
+    // forEach(movie => {
+    //   film = movie.title;
+    // });
+    console.log(data[index].title);
+    movie = data[index].title;
+  } else {
+    console.log("error");
+  }
+};
+request.send();
+//random joke
+let joke1;
+let joke2;
 
-// let date = new Date();
+fetch("https://official-joke-api.appspot.com/random_joke")
+  .then(response => response.json())
+  .then(data => {
+    joke1 = `${data.setup}` + `${data.punchline}`;
+  });
+
+// fetch("http://example.com/movies.json")
+//   .then(response => {
+//     return response.json();
+//   })
+//   .then(data => {
+//     movie = data;
+//   });
+
+// setTimeout(() => {
+//   a = joke1;
+// }, 2000);
+
+// function manimu() {
+//   let input1 = document.createElement("input");
+//   document.body.appendChild(input1);
+//   input1.className = "input";
+//   let input2 = document.createElement("input");
+//   document.body.appendChild(input2);
+//   input2.className = "input";
+//   let input3 = document.createElement("input");
+//   document.body.appendChild(input3);
+//   input3.className = "input";
+//   let input4 = document.createElement("p");
+//   element.insertBefore("hey");
+//   input4.className = "para";
+// }
 
 function answer() {
+  index = Math.ceil(Math.random() * 10);
   let year = new Date().getFullYear();
   let day = new Date().getDay();
   let month = new Date().getMonth();
@@ -134,19 +194,45 @@ function answer() {
     case "what time is it":
       a = "it's" + " " + time;
       break;
+    case "give me a movie":
+      a = movie;
+      break;
+    // case "bo":
+    //   manimu();
+    //   a = "here u go";
+    //   break;
+    case "tell me a joke":
+      a = joke1;
+      break;
+    case "play jad's favourit song":
+      setTimeout(() => {
+        jad.play();
+      }, 3000);
+      a = "here you go";
+      break;
+    case "stop":
+      jad.pause();
+      a = "hope u enjoyed it dad";
+      break;
+    case "give me some news about the corona in syria":
+      setTimeout(() => {
+        corona.play();
+        a = `sounds like they are celebrating dad..cool!!`;
+      }, timing);
 
+      break;
     default:
       a = "don't know about that yet :( will ask my maker to teach me ";
       break;
   }
 
-  (document.querySelector("label").innerHTML = "processing.."),
+  (document.getElementById("div1").innerHTML = "processing.."),
     setTimeout(() => {
-      document.querySelector("label").innerHTML = a;
+      document.getElementById("div1").innerHTML = a;
     }, timing);
 }
 // let a = new Date();
 // let b = setInterval(() => {
 //   console.log(a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds());
 // }, 1000);
-// console.log(b);
+// console.log(b)
