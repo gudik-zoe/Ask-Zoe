@@ -1,7 +1,7 @@
 let q;
 let a;
 let timing;
-
+let key;
 let movie;
 
 let jad = new Audio(
@@ -22,7 +22,7 @@ setInterval(() => {
 //random movie
 let request = new XMLHttpRequest();
 request.open("GET", "https://ghibliapi.herokuapp.com/films", true);
-request.onload = function() {
+request.onload = function () {
   let data = JSON.parse(this.response);
   let index = Math.floor(Math.random() * 10);
   if (request.status >= 200 && request.status < 400) {
@@ -42,16 +42,16 @@ let joke1;
 let joke2;
 
 fetch("https://official-joke-api.appspot.com/random_joke")
-  .then(response => response.json())
-  .then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     joke1 = `${data.setup}` + `${data.punchline}`;
   });
 
 // fetch("http://example.com/movies.json")
-//   .then(response => {
+//   .then((response) => {
 //     return response.json();
 //   })
-//   .then(data => {
+//   .then((data) => {
 //     movie = data;
 //   });
 
@@ -73,7 +73,101 @@ fetch("https://official-joke-api.appspot.com/random_joke")
 //   element.insertBefore("hey");
 //   input4.className = "para";
 // }
+// let p = document.getElementById("tony");
+// p.className = "hide";
+let div = document.getElementById("calculator");
+div.className = "hide";
+function sum() {
+  div.className = "show";
+}
+function result() {
+  document.getElementById("result").innerHTML = "..";
+  reaction();
+  setTimeout(() => {
+    let num1 = Number(document.getElementById("num1").value);
+    let sign = document.getElementById("sign").value;
+    let num2 = Number(document.getElementById("num2").value);
+    switch (sign) {
+      case "+":
+        key = num1 + num2;
+        break;
+      case "-":
+        key = num1 - num2;
+        break;
+      case "*":
+        key = num1 * num2;
+        break;
+      case "/":
+        key = num1 / num2;
+        break;
+    }
+    document.getElementById("result").innerHTML = key;
+  }, 500);
+}
+// let div = document.getElementById("container");
+// div.body.appendChild(input1);
+// let input1 = document.createElement("input");
+// document.body.appendChild(input1);
+// let input2 = document.createElement("input");
+// document.body.appendChild(input2);
+// let input3 = document.createElement("input");
+// document.body.appendChild(input3);
+// let equale = document.createElement("button");
+// equale.innerHTML = "=";
+// document.body.appendChild(equale);
+// let result = document.createElement("label");
+// result.className = "result-cal";
+// equale.id = "equal";
+// input1.className = "input-cal";
+// input1.id = "num1";
+// input2.className = "sign-cal";
+// input2.id = "sign";
+// input3.className = "input-cal";
+// input3.id = "num2";
+// document.getElementById("equal").addEventListener("click", function () {
+//   reaction();
+//   let num1 = Number(document.getElementById("num1").value);
+//   let num2 = Number(document.getElementById("num2").value);
+//   let sign = document.getElementById("sign").value;
+//   let sum;
+//   switch (sign) {
+//     case "-":
+//       sum = num1 - num2;
+//       break;
+//     case "*":
+//       sum = num1 * num2;
+//       break;
+//     case "/":
+//       sum = num1 / num2;
+//       break;
+//     case "+":
+//       sum = num1 + num2;
+//       break;
+//   }
+//   result.innerHTML = sum;
+//   document.body.appendChild(result);
+// });
 
+function reaction() {
+  tongue.className = "";
+  mouth.className = "mouth-closed";
+  rightEye.className = "right-eye-closed";
+  leftEye.className = "left-eye-closed";
+  white.className = "";
+
+  setTimeout(() => {
+    leftEye.className = "left-eye";
+    rightEye.className = "right-eye";
+    white2.className = "white";
+    white.className = "white";
+    mouth.className = "mouth";
+    tongue.className = "tongue";
+  }, 500);
+}
+
+function close() {
+  div.className = "hide";
+}
 function answer() {
   index = Math.ceil(Math.random() * 10);
   let year = new Date().getFullYear();
@@ -98,7 +192,7 @@ function answer() {
   } else if (q.length > 15 && q.length < 20) {
     timing = 2000;
   } else if (q.length > 15) {
-    timing = 3000;
+    timing = 2000;
   }
   setTimeout(() => {
     leftEye.className = "left-eye";
@@ -191,16 +285,18 @@ function answer() {
         "/" +
         year;
       break;
+    case "chi é che ti ha creato":
+      a = "un svilupattore junior che si chiama tony io lo chiamo papà";
+      break;
     case "what time is it":
       a = "it's" + " " + time;
       break;
     case "give me a movie":
       a = movie;
       break;
-    // case "bo":
-    //   manimu();
-    //   a = "here u go";
-    //   break;
+    case "ma senti conosci paloma":
+      a = "intendi la ragazza che non le piace la matematica?";
+      break;
     case "tell me a joke":
       a = joke1;
       break;
@@ -220,6 +316,18 @@ function answer() {
         a = `sounds like they are celebrating dad..cool!!`;
       }, timing);
 
+      break;
+    case "quit calculator":
+      close();
+      a = "Done";
+      break;
+
+    case "give me a calculator":
+      setTimeout(() => {
+        sum();
+      }, timing);
+
+      a = "here you go";
       break;
     default:
       a = "don't know about that yet :( will ask my maker to teach me ";
