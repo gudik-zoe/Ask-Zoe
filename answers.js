@@ -2,44 +2,99 @@ let q;
 let a;
 let timing;
 let key;
+let time;
 let movie;
+let joke1;
+let clockInterval;
+let firstInterval;
+let secondInterval;
+let thirdInterval;
+let year = new Date().getFullYear();
+let day = new Date().getDay();
+let month = new Date().getMonth();
+let date = new Date().getDate();
+let hey;
+let index = Math.floor(Math.random() * 10);
+let number = 0;
+let randomNumber;
+// let randomNumber;
 
+switch (day) {
+  case (day = 0):
+    day = "Sunday";
+    break;
+  case (day = 1):
+    day = "Monday";
+    break;
+  case (day = 2):
+    day = "Tuesday";
+    break;
+  case (day = 3):
+    day = "Wednesday";
+    break;
+  case (day = 4):
+    day = "Thursday";
+    break;
+  case (day = 5):
+    day = "Friday";
+    break;
+  case (day = 6):
+    day = "Saturday";
+    break;
+}
+
+switch (month) {
+  case (month = 0):
+    month = "01";
+    break;
+  case (month = 1):
+    month = "02";
+    break;
+  case (month = 2):
+    month = "03";
+    break;
+  case (month = 3):
+    month = "04";
+    break;
+  case (month = 4):
+    month = "05";
+    break;
+  case (month = 5):
+    month = "06";
+    break;
+  case (month = 6):
+    month = "07";
+    break;
+  case (month = 7):
+    month = "08";
+    break;
+  case (month = 8):
+    month = "09";
+    break;
+  case (month = 9):
+    month = "10";
+    break;
+  case (month = 10):
+    month = "11";
+    break;
+  case (month = 11):
+    month = "12";
+    break;
+  default:
+    break;
+}
 let jad = new Audio(
   "Nancy Ajram - Ma Tegi Hena - Official Video Clip  نانسي عجرم - فيديو كليب ما تيجي هنا-[AudioTrimmer.com].mp3"
 );
 let corona = new Audio("VID-20200318-WA0062(mp3)-[AudioTrimmer.com] (1).mp3");
-
-let time;
-setInterval(() => {
-  let ora = new Date();
-  time =
-    ("0" + ora.getHours()).slice(-2) +
-    ":" +
-    ("0" + ora.getMinutes()).slice(-2) +
-    ":" +
-    ("0" + ora.getSeconds()).slice(-2);
-}, 1000);
-//random movie
-let request = new XMLHttpRequest();
-request.open("GET", "https://ghibliapi.herokuapp.com/films", true);
-request.onload = function () {
-  let data = JSON.parse(this.response);
-  let index = Math.floor(Math.random() * 10);
-  if (request.status >= 200 && request.status < 400) {
-    data[index];
-    // forEach(movie => {
-    //   film = movie.title;
-    // });
-    console.log(data[index].title);
-    movie = data[index].title;
-  } else {
-    console.log("error");
-  }
-};
-request.send();
-//random joke
-let joke1;
-let joke2;
+function film() {
+  fetch("https://ghibliapi.herokuapp.com/films")
+    .then((response) => response.json())
+    .then((data) => {
+      randomNumber = Math.floor(Math.random() * 10);
+      document.getElementById("api").innerHTML = data[randomNumber].title;
+    });
+}
 
 fetch("https://official-joke-api.appspot.com/random_joke")
   .then((response) => response.json())
@@ -47,42 +102,68 @@ fetch("https://official-joke-api.appspot.com/random_joke")
     joke1 = `${data.setup}` + `${data.punchline}`;
   });
 
-// fetch("http://example.com/movies.json")
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((data) => {
-//     movie = data;
-//   });
-
-// setTimeout(() => {
-//   a = joke1;
-// }, 2000);
-
-// function manimu() {
-//   let input1 = document.createElement("input");
-//   document.body.appendChild(input1);
-//   input1.className = "input";
-//   let input2 = document.createElement("input");
-//   document.body.appendChild(input2);
-//   input2.className = "input";
-//   let input3 = document.createElement("input");
-//   document.body.appendChild(input3);
-//   input3.className = "input";
-//   let input4 = document.createElement("p");
-//   element.insertBefore("hey");
-//   input4.className = "para";
-// }
-// let p = document.getElementById("tony");
-// p.className = "hide";
-let div = document.getElementById("calculator");
-div.className = "hide";
-function sum() {
-  div.className = "show";
+function increment() {
+  fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((response) => response.json())
+    .then((data) => {
+      randomNumber = Math.floor(Math.random() * 10);
+      // console.log(randomNumber);
+      document.getElementById("api").innerHTML = data[randomNumber].title;
+    });
 }
+function harry() {
+  fetch("spells.txt")
+    .then((response) => response.json())
+    .then((data) => {
+      randomNumber = Math.floor(Math.random() * 10);
+      document.getElementById("api").innerHTML =
+        data[randomNumber].name + ":" + data[randomNumber].effect;
+    });
+}
+
+let countdowner = document.getElementById("cd");
+countdowner.className = "hide";
+let calculator = document.getElementById("calculator");
+calculator.className = "hide";
+let pensiero = document.getElementById("container");
+let clock = document.getElementById("clock");
+clock.className = "hide";
+
+function showCalculator() {
+  calculator.className = "show";
+}
+function hideCalculator() {
+  calculator.className = "hide";
+}
+function showCountDowner() {
+  countdowner.className = "show";
+  pensiero.className = "big";
+}
+function hideCountDowner() {
+  countdowner.className = "hide";
+  pensiero.className = "pensiero";
+}
+function showClock() {
+  clock.className = "show";
+}
+
+function hideClock() {
+  clock.className = "hide";
+}
+
+clockInterval = setInterval(() => {
+  let ora = new Date();
+  document.getElementById("clock").innerHTML =
+    ("0" + ora.getHours()).slice(-2) +
+    ":" +
+    ("0" + ora.getMinutes()).slice(-2) +
+    ":" +
+    ("0" + ora.getSeconds()).slice(-2);
+}, 1000);
+
 function result() {
   document.getElementById("result").innerHTML = "..";
-  reaction();
+  reaction(500);
   setTimeout(() => {
     let num1 = Number(document.getElementById("num1").value);
     let sign = document.getElementById("sign").value;
@@ -95,6 +176,7 @@ function result() {
         key = num1 - num2;
         break;
       case "*":
+        document.getElementById("sign").value = "X";
         key = num1 * num2;
         break;
       case "/":
@@ -104,51 +186,7 @@ function result() {
     document.getElementById("result").innerHTML = key;
   }, 500);
 }
-// let div = document.getElementById("container");
-// div.body.appendChild(input1);
-// let input1 = document.createElement("input");
-// document.body.appendChild(input1);
-// let input2 = document.createElement("input");
-// document.body.appendChild(input2);
-// let input3 = document.createElement("input");
-// document.body.appendChild(input3);
-// let equale = document.createElement("button");
-// equale.innerHTML = "=";
-// document.body.appendChild(equale);
-// let result = document.createElement("label");
-// result.className = "result-cal";
-// equale.id = "equal";
-// input1.className = "input-cal";
-// input1.id = "num1";
-// input2.className = "sign-cal";
-// input2.id = "sign";
-// input3.className = "input-cal";
-// input3.id = "num2";
-// document.getElementById("equal").addEventListener("click", function () {
-//   reaction();
-//   let num1 = Number(document.getElementById("num1").value);
-//   let num2 = Number(document.getElementById("num2").value);
-//   let sign = document.getElementById("sign").value;
-//   let sum;
-//   switch (sign) {
-//     case "-":
-//       sum = num1 - num2;
-//       break;
-//     case "*":
-//       sum = num1 * num2;
-//       break;
-//     case "/":
-//       sum = num1 / num2;
-//       break;
-//     case "+":
-//       sum = num1 + num2;
-//       break;
-//   }
-//   result.innerHTML = sum;
-//   document.body.appendChild(result);
-// });
-
-function reaction() {
+function reaction(seconds) {
   tongue.className = "";
   mouth.className = "mouth-closed";
   rightEye.className = "right-eye-closed";
@@ -162,111 +200,78 @@ function reaction() {
     white.className = "white";
     mouth.className = "mouth";
     tongue.className = "tongue";
-  }, 500);
+  }, seconds);
 }
 
-function close() {
-  div.className = "hide";
+function start() {
+  let secs = parseInt(document.getElementById("seconds").value);
+  let mins = parseInt(document.getElementById("minutes").value);
+
+  if (secs > 0 && mins === 0) {
+    firstInterval = setInterval(() => {
+      document.getElementById("here").innerHTML =
+        "00" + ":" + ("0" + secs--).slice(-2);
+      if (secs < 0) {
+        clearInterval(firstInterval);
+        document.getElementById("here").innerHTML = "Attention!";
+      }
+    }, 1000);
+  }
+
+  if (mins > 0 && secs === 0) {
+    secs = 59;
+    mins = mins - 1;
+    secondInterval = setInterval(() => {
+      document.getElementById("here").innerHTML =
+        ("0" + mins).slice(-2) + ":" + ("0" + secs--).slice(-2);
+      if (mins != 0 && secs === 0) {
+        mins = mins - 1;
+        secs = 59;
+        document.getElementById("here").innerHTML =
+          ("0" + mins).slice(-2) + ":" + ("0" + secs--).slice(-2);
+      } else if (mins === 0 && secs === 0) {
+        clearInterval(secondInterval);
+        document.getElementById("here").innerHTML = "time's up";
+      }
+    }, 1000);
+  } else if (mins != 0 && secs != 0) {
+    thirdInterval = setInterval(() => {
+      document.getElementById("here").innerHTML =
+        ("0" + mins).slice(-2) + ":" + ("0" + secs--).slice(-2);
+      if (secs === -2 && mins != 0) {
+        mins = mins - 1;
+        secs = 59;
+        document.getElementById("here").innerHTML =
+          ("0" + mins).slice(-2) + ":" + ("0" + secs--).slice(-2);
+      } else if (mins === 0 && secs === 0) {
+        clearInterval(thirdInterval);
+        document.getElementById("here").innerHTML = "time's up";
+      }
+    }, 1000);
+  }
 }
+function stop() {
+  clearInterval(secondInterval);
+  clearInterval(firstInterval);
+  clearInterval(thirdInterval);
+}
+function reset() {
+  document.getElementById("here").innerHTML = "";
+  document.getElementById("seconds").innerHTML = " ";
+  document.getElementById("here").innerHTML = "00" + ":" + "00";
+}
+
 function answer() {
-  index = Math.ceil(Math.random() * 10);
-  let year = new Date().getFullYear();
-  let day = new Date().getDay();
-  let month = new Date().getMonth();
-  let date = new Date().getDate();
   q = document.querySelector("input").value;
-  let rightEye = document.getElementById("rightEye");
-  let white = document.getElementById("white");
-  let white2 = document.getElementById("white2");
-  let leftEye = document.getElementById("leftEye");
-  let mouth = document.getElementById("mouth");
-  let tongue = document.getElementById("tongue");
-  tongue.className = "";
-  mouth.className = "mouth-closed";
-  rightEye.className = "right-eye-closed";
-  leftEye.className = "left-eye-closed";
-  white.className = "";
-
-  if (q.length < 15) {
+  if (q.length <= 15) {
     timing = 500;
   } else if (q.length > 15 && q.length < 20) {
     timing = 2000;
   } else if (q.length > 15) {
     timing = 2000;
   }
-  setTimeout(() => {
-    leftEye.className = "left-eye";
-    rightEye.className = "right-eye";
-    white2.className = "white";
-    white.className = "white";
-    mouth.className = "mouth";
-    tongue.className = "tongue";
-  }, timing);
 
-  switch (day) {
-    case (day = 0):
-      day = "Sunday";
-      break;
-    case (day = 1):
-      day = "Monday";
-      break;
-    case (day = 2):
-      day = "Tuesday";
-      break;
-    case (day = 3):
-      day = "Wednesday";
-      break;
-    case (day = 4):
-      day = "Thursday";
-      break;
-    case (day = 5):
-      day = "Friday";
-      break;
-    case (day = 6):
-      day = "Saturday";
-      break;
-  }
-
-  switch (month) {
-    case (month = 0):
-      month = "01";
-      break;
-    case (month = 1):
-      month = "02";
-      break;
-    case (month = 2):
-      month = "03";
-      break;
-    case (month = 3):
-      month = "04";
-      break;
-    case (month = 4):
-      month = "05";
-      break;
-    case (month = 5):
-      month = "06";
-      break;
-    case (month = 6):
-      month = "07";
-      break;
-    case (month = 7):
-      month = "08";
-      break;
-    case (month = 8):
-      month = "09";
-      break;
-    case (month = 9):
-      month = "10";
-      break;
-    case (month = 10):
-      month = "11";
-      break;
-    case (month = 11):
-      month = "12";
-      break;
-    default:
-      break;
-  }
+  reaction(timing);
 
   switch (q) {
     case "what is your name":
@@ -285,25 +290,43 @@ function answer() {
         "/" +
         year;
       break;
-    case "chi é che ti ha creato":
-      a = "un svilupattore junior che si chiama tony io lo chiamo papà";
-      break;
     case "what time is it":
-      a = "it's" + " " + time;
+      setTimeout(() => {
+        showClock();
+      }, timing);
+      a = "its";
+      break;
+    case "quit clock":
+      setTimeout(() => {
+        hideClock();
+      }, timing);
+      a = "Done";
       break;
     case "give me a movie":
-      a = movie;
+      setTimeout(() => {
+        film();
+      }, timing);
+      a = " ";
       break;
-    case "ma senti conosci paloma":
-      a = "intendi la ragazza che non le piace la matematica?";
+    case "give me a title":
+      setTimeout(() => {
+        increment();
+      }, timing);
+      a = " ";
       break;
     case "tell me a joke":
       a = joke1;
       break;
+    case "give me a magic spell":
+      setTimeout(() => {
+        harry();
+      }, timing);
+      a = " ";
+      break;
     case "play jad's favourit song":
       setTimeout(() => {
         jad.play();
-      }, 3000);
+      }, 2000);
       a = "here you go";
       break;
     case "stop":
@@ -315,20 +338,33 @@ function answer() {
         corona.play();
         a = `sounds like they are celebrating dad..cool!!`;
       }, timing);
-
       break;
     case "quit calculator":
-      close();
+      setTimeout(() => {
+        hideCalculator();
+      }, timing);
       a = "Done";
       break;
 
     case "give me a calculator":
       setTimeout(() => {
-        sum();
+        showCalculator();
       }, timing);
-
       a = "here you go";
       break;
+    case "give me a countdowner":
+      setTimeout(() => {
+        showCountDowner();
+      }, timing);
+      a = "here you go";
+      break;
+    case "quit countdowner":
+      setTimeout(() => {
+        hideCountDowner();
+      }, timing);
+      a = "done";
+      break;
+
     default:
       a = "don't know about that yet :( will ask my maker to teach me ";
       break;
@@ -339,8 +375,3 @@ function answer() {
       document.getElementById("div1").innerHTML = a;
     }, timing);
 }
-// let a = new Date();
-// let b = setInterval(() => {
-//   console.log(a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds());
-// }, 1000);
-// console.log(b)

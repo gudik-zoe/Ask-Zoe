@@ -11,31 +11,50 @@
       <input class="input"> <input class="input"> <input class="input" > <input class = "input" value="  =">  <p class="input" ></p>
     </div> -->
     <div class="all">
+      <marquee class="marquee">`${tag}`</marquee>
       <div id="container" class="pensiero">
         How can i help you ?
         <br />
-       
-        
         <form onsubmit="answer() ; return false">
           <!-- <button onclick="answer()">go</button> -->
           <input type="text" id="text" class="input" />
-          <br />
-          <div id="div1" class="label">
-          
         </form>
-        
-        
-       
-      </div>
-      <div id="calculator">
-        <input id="num1"class="input-cal">
-        <input id="sign"class="sign-cal">
-        <input id="num2"class="input-cal">
-        <button onclick="result()">=</button>
-        <label id="result" class="result-cal"></label>
-        </div>
-      <!-- <p id="tony">hey guys</p> -->
+        <!-- <button onclick="get()">get</button> -->
 
+        <div id="div1" class="label"></div>
+
+        <div id="calculator">
+          <input id="num1" class="input-cal" />
+          <input id="sign" class="sign-cal" />
+          <input id="num2" class="input-cal" />
+          <button onclick="result()">=</button>
+          <label id="result" class="result-cal"></label>
+        </div>
+        <div id="cd">
+          <input id="minutes" class =input-cal " placeholder="mins" />:
+          <input id="seconds" class="input-cal" placeholder="secs" />
+
+          <br />
+          <button class="cd-button" onclick="start()">start</button>
+          <button class="cd-button" onclick="stop()">stop</button>
+          <button class="cd-button" onclick="reset ()">reset</button>
+          <label id="here" class="input-cal"></label>
+        </div>
+        <div id="clock"></div>
+        <div id="api"></div>
+      </div>
+
+      <!-- <div id="div">
+        <input id="minutes" placeholder="mins" />
+        <p id="points">:</p>
+        <input id="seconds" placeholder="secs" /> <br />
+  
+        <p id="here"></p>
+        <br />
+        <button onclick="start()">start</button>
+        <button onclick="stop()">stop</button>
+        <button onclick="reset ()">reset</button>
+      </div> -->
       <div class="punto-due"></div>
       <div class="punto-uno"></div>
       <div class="container">
