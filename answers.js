@@ -17,6 +17,11 @@ let hey;
 let index = Math.floor(Math.random() * 10);
 let number = 0;
 let randomNumber;
+let space = " ";
+let age = 7;
+// let age = 7; //days
+// let currentAge;
+
 // let randomNumber;
 
 switch (day) {
@@ -117,7 +122,14 @@ function harry() {
     .then((data) => {
       randomNumber = Math.floor(Math.random() * 10);
       document.getElementById("api").innerHTML =
-        data[randomNumber].name + ":" + data[randomNumber].effect;
+        data[randomNumber].name +
+        ":" +
+        space +
+        data[randomNumber].effect +
+        space +
+        "counter-spell:" +
+        space +
+        data[randomNumber].counter;
     });
 }
 
@@ -128,29 +140,10 @@ calculator.className = "hide";
 let pensiero = document.getElementById("container");
 let clock = document.getElementById("clock");
 clock.className = "hide";
+let api = document.getElementById("api");
+let title = document.getElementById("title");
 
-function showCalculator() {
-  calculator.className = "show";
-}
-function hideCalculator() {
-  calculator.className = "hide";
-}
-function showCountDowner() {
-  countdowner.className = "show";
-  pensiero.className = "big";
-}
-function hideCountDowner() {
-  countdowner.className = "hide";
-  pensiero.className = "pensiero";
-}
-function showClock() {
-  clock.className = "show";
-}
-
-function hideClock() {
-  clock.className = "hide";
-}
-
+title.innerHTML = "Hi! i'm Zoe";
 clockInterval = setInterval(() => {
   let ora = new Date();
   document.getElementById("clock").innerHTML =
@@ -176,7 +169,6 @@ function result() {
         key = num1 - num2;
         break;
       case "*":
-        document.getElementById("sign").value = "X";
         key = num1 * num2;
         break;
       case "/":
@@ -262,6 +254,11 @@ function reset() {
 }
 
 function answer() {
+  clock.className = "hide";
+  api.className = "hide";
+  countdowner.className = "hide";
+  pensiero.className = "pensiero";
+  calculator.className = "hide";
   q = document.querySelector("input").value;
   if (q.length <= 15) {
     timing = 500;
@@ -278,7 +275,10 @@ function answer() {
       a = "my name is zoe";
       break;
     case "how old are you":
-      a = "no idea...ask my maker";
+      setInterval(() => {
+        age++;
+      }, 60000);
+      a = age;
       break;
     case "what day is today":
       a =
@@ -292,23 +292,20 @@ function answer() {
       break;
     case "what time is it":
       setTimeout(() => {
+        clock.className = "show";
         showClock();
       }, timing);
       a = "its";
       break;
-    case "quit clock":
-      setTimeout(() => {
-        hideClock();
-      }, timing);
-      a = "Done";
-      break;
     case "give me a movie":
+      api.className = "show";
       setTimeout(() => {
         film();
+        a = " ";
       }, timing);
-      a = " ";
       break;
     case "give me a title":
+      api.className = "show";
       setTimeout(() => {
         increment();
       }, timing);
@@ -318,8 +315,10 @@ function answer() {
       a = joke1;
       break;
     case "give me a magic spell":
+      api.className = "show";
       setTimeout(() => {
         harry();
+        pensiero.className = "big";
       }, timing);
       a = " ";
       break;
@@ -339,32 +338,19 @@ function answer() {
         a = `sounds like they are celebrating dad..cool!!`;
       }, timing);
       break;
-    case "quit calculator":
-      setTimeout(() => {
-        hideCalculator();
-      }, timing);
-      a = "Done";
-      break;
-
     case "give me a calculator":
       setTimeout(() => {
-        showCalculator();
+        calculator.className = "show";
       }, timing);
       a = "here you go";
       break;
     case "give me a countdowner":
       setTimeout(() => {
-        showCountDowner();
+        countdowner.className = "show";
+        pensiero.className = "big";
       }, timing);
       a = "here you go";
       break;
-    case "quit countdowner":
-      setTimeout(() => {
-        hideCountDowner();
-      }, timing);
-      a = "done";
-      break;
-
     default:
       a = "don't know about that yet :( will ask my maker to teach me ";
       break;
