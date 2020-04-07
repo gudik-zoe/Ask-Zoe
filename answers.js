@@ -13,17 +13,12 @@ let year = new Date().getFullYear();
 let day = new Date().getDay();
 let month = new Date().getMonth();
 let date = new Date().getDate();
-let hey;
 let index = Math.floor(Math.random() * 10);
-let number = 0;
 let randomNumber;
 let space = " ";
-let age = 7;
-// let age = 7; //days
-// let currentAge;
-
-// let randomNumber;
-
+let dateOfBirth = 737390;
+let age;
+console.log(date);
 switch (day) {
   case (day = 0):
     day = "Sunday";
@@ -275,10 +270,8 @@ function answer() {
       a = "my name is zoe";
       break;
     case "how old are you":
-      setInterval(() => {
-        age++;
-      }, 60000);
-      a = age;
+      age = date + new Date().getMonth() * 30 + year * 365 - dateOfBirth;
+      a = "i'm" + " " + age + " " + "days old";
       break;
     case "what day is today":
       a =
