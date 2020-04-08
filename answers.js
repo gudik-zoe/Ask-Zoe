@@ -16,9 +16,7 @@ let date = new Date().getDate();
 let index = Math.floor(Math.random() * 10);
 let randomNumber;
 let space = " ";
-let dateOfBirth = 737390;
-let age;
-console.log(date);
+
 switch (day) {
   case (day = 0):
     day = "Sunday";
@@ -270,8 +268,10 @@ function answer() {
       a = "my name is zoe";
       break;
     case "how old are you":
-      age = date + new Date().getMonth() * 30 + year * 365 - dateOfBirth;
-      a = "i'm" + " " + age + " " + "days old";
+      let date1 = new Date("3/30/2020").getTime();
+      let now = new Date().getTime();
+      let ageInDays = Math.floor((now - date1) / (1000 * 60 * 60 * 24));
+      a = "i'm" + " " + ageInDays + " " + "days old";
       break;
     case "what day is today":
       a =
