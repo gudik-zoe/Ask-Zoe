@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/gudik-zoe/new-project#readme",
   "dependencies": {
-    "electron": "^8.2.0"
+    "electron": "^18.3.7"
   }
 }
